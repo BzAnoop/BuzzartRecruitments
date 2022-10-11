@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/test.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <link rel="icon" href="/static/images/BS-icon.png" type="image/gif" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Buzzarts Software</title>
+</head>
+
+<body>
+        <!-- header -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navBar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://www.buzzartsoftware.com/" target="_blank">
+                    <img src="/static/Images/Company_Logo.jpg" class="img-fluid pd15 mh-100 mw-100" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="row">
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                {% if userlogin == True %}
+                                {% include 'logout_lnk.html' %}
+                                {% else %}
+                                {% include 'log_lnk.html' %}
+                                {% endif %}
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="register"><b
+                                        style="background-color: rgb(97, 169, 252); padding:5px; border-radius: 10px;">Signup</b></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/"><b>Home</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://www.buzzartsoftware.com"><b>About Us</b></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/testhome"><b>Test</b></a>
+                            </li>
+
+                            <!-- Dropdown navbar -->
+                            <li class="dropdown nav-item">
+                                <a class="dropdown-toggle nav-link " href="#" role="button" id="dropdownMenuLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <b>Welcome </b>&nbsp;{{uid}}
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item nav-link" href="#">Profile</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h4 class="GetText">Show Yours Skills</h3>
+        </div>
+        <div class="container-fluid"
+            style="font-family:monospace; background: linear-gradient(90deg, rgba(138, 138, 249, 1) 3%, rgba(179, 179, 254, 1) 11%, rgba(224, 224, 241, 1) 65%, rgba(136, 214, 233, 1) 91%);">
+            <div class="container" >
+                <h4>Instructions</h4>
+                <ul type ="square">
+                    <li>You must use a functioning webcam and microphone.</li>
+                    <li>No cell phones or other secondary devices in the room or test area.</li>
+                    <li>Your desk/table must be clear or any materials except your test-taking device.</li>
+                    <li>No one else can be in the room with you.</li>
+                    <li>Don't Speak During Test.</li>
+                    <li>The testing room must be well-lit and you must be clearly visible.</li>
+                    <li>Dual Screen/Monitors are not allowed.</li>
+                    <li>You are not allowed to leave the camera during test.</li>
+                    <li>You are not allowed additional application.</li>
+                    <li>Switching from test windows during test are not allowed.</li>
+                    <li>Do not use any Screen Casting Applications like TeamViewer/PC Anywhere etc.</li>
+                    <li>In case of any other issue with application and if the process stoped accidentally your
+                        sessions will remain saved and can proceed from the same stage.</li>
+                </ul>
+                <h5 style="color: brown;  font-weight:bold">Breaking any of the above mentioned rules or policies
+                    will automatically disqualify you from recruitement process and test will be terminated
+                    without any notice.
+                </h5>
+                <div align="center">
+                    <a class="btn btn-primary btn-bd-light" href="{% url 'starttest' skill %}">Proceed</a>
+                </div>
+            </div>
+        </div>
+    <footer class="container-fluid testFooter">
+            <div class="row">
+                <div class="col-7 d-flex gap-3">
+                    <img src="/static/images/BS.jpeg" />
+                    <h5 class="mt-2">Buzzart Software PVT. LTD.</h5>
+                </div>
+                <div class="col-5 mt-2 footerContent">
+                    <p><i> Copyright 2012 &copy;  All Rights Reserved </i></p>
+                </div>
+            </div>
+    </footer>
+
+
+</body>
+
+</html>

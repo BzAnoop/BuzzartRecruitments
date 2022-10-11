@@ -1,0 +1,66 @@
+.GetText {
+    font: bold;
+}
+
+nav img {
+    width: 250px;
+    height: 150px;
+    margin-left: 10px;
+}
+
+.navBar {
+    /* background: linear-gradient(140deg, #193b84 15%, #037bc1); */
+
+    background: rgb(138, 138, 249);
+    background: linear-gradient(90deg, rgba(138, 138, 249, 1) 3%, rgba(179, 179, 254, 1) 11%, rgba(224, 224, 241, 1) 65%, rgba(136, 214, 233, 1) 91%);
+}
+
+.nav-link:hover {
+    color: #037bc1 !important;
+}
+
+.backGr {
+    background: linear-gradient(90deg, rgba(138, 138, 249, 1) 3%, rgba(179, 179, 254, 1) 11%, rgba(224, 224, 241, 1) 65%, rgba(136, 214, 233, 1) 91%);
+    color: white;
+}
+
+.BackGroundBox {
+    width: 100%;
+    /* height: 150px; */
+    /* margin-top: 20px; */
+    /* background: linear-gradient(140deg, #193b84 15%, #037bc1); */
+    background: linear-gradient(90deg, rgba(138, 138, 249, 1) 3%, rgba(179, 179, 254, 1) 11%, rgba(224, 224, 241, 1) 65%, rgba(136, 214, 233, 1) 91%);
+
+    color: white;
+    padding: 30px;
+    /* text-align: center; */
+}
+
+.TestBox {
+    margin-top: 30px;
+    box-shadow: 1px 1px 5px 2px;
+}
+
+.card-body {
+    padding-top: 20% !important;
+    text-align: center;
+}
+
+.testFooter {
+    background: linear-gradient(90deg, rgba(138, 138, 249, 1) 3%, rgba(179, 179, 254, 1) 11%, rgba(224, 224, 241, 1) 65%, rgba(136, 214, 233, 1) 91%);
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    padding: 30px;
+}
+
+footer img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.footerContent {
+    display: flex;
+    gap: 10px;
+}

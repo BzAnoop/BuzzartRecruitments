@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/Login.css" />
+    <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-5">
+                <div class="d-flex gap-3 SideBox">
+
+                    <img src="/static/images/BS.jpeg" class="BuzzImg" />
+                    <a href= '/' class="textbuzz">Buzzart Software PVT. LTD.</a>
+                </div>
+            </div>
+            <div class="col-6 regMainBox">
+                <h1 style="text-align: center;">Sign-In</h1>
+                <p style="text-align: center;">Enter User ID & password to continue....</p>
+                <form class="form-group" method="post" action="log">
+                    {% csrf_token %}
+                    <label style="color:gray ;"> User ID </label>
+                    <h1>{{err}}</h1>
+                    <input name = "usrid" placeholder="User ID" type="text" class="form-control" /><br />
+
+                    <label style="color:gray ;">Your Password</label>
+                    <input name = "pwd" placeholder="Enter Password" type="password" class="form-control"><br />
+                    <div class="d-flex">
+                        <a href="reg" style="text-decoration: none; color:#50b5ff;">Don't have
+                            an account?</a>
+                        <input type ="submit" class="btn btn-primary" style="margin-left: 60%;" value="Submit" />
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

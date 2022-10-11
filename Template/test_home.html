@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/test.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <link rel="icon" href="/static/images/BS-icon.png" type="image/gif" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Buzzarts Software</title>
+</head>
+
+<body>
+    <!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navBar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://www.buzzartsoftware.com/" target="_blank">
+                <img src="/static/Images/Company_Logo.jpg" class="img-fluid pd15 mh-100 mw-100" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="row">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            {% if userlogin == True %}
+                            {% include 'logout_lnk.html' %}
+                            {% else %}
+                            {% include 'log_lnk.html' %}
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register"><b
+                                    style="background-color: rgb(97, 169, 252); padding:5px; border-radius: 10px;">Signup</b></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/"><b>Home</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://www.buzzartsoftware.com"><b>About Us</b></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/testhome"><b>Test</b></a>
+                        </li>
+
+                        <!-- Dropdown navbar -->
+                        <li class="dropdown nav-item">
+                            <a class="dropdown-toggle nav-link " href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <b>Profile </b>&nbsp;{{uid}}
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item nav-link" href="addExp">Experience</a></li>
+                                <li><a class="dropdown-item nav-link" href="addquali">Qualifications</a></li>
+                                <li><a class="dropdown-item nav-link" href="addskills">Skills</a></li>
+                                <li><a class="dropdown-item nav-link" href="#">View Profile</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- <div class="container">
+        <h2 class="GetText"><b>Show Yours Skills</b></h2>
+    </div> -->
+
+    <div class="container-fluid BackGroundBox">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h4>Stand out from the crowd</h4>
+                    <p style="color:black;">
+                        Following the crowd kills what is inside you, making you a puppet in the hands of the world. So take a journey to discover yourself, that will be better for you and the world as well.
+                    </p>
+                </div>
+                <div class="col-4">
+                    <h4>Standardised Assessment</h4>
+                    <p style="color:black ;">
+                        These questions are carefully selected and aim to offer an objective measurement of the candidate's current level of achievement in a given area.
+                    </p>
+                </div>
+                <div class="col-4">
+                    <h4>Enrich your profile update</h4>
+                    <p style="color:black ;">
+                        Enrich your profile and update it and give the assessment based upon your experience level.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="GetText"><b>Choose a Skill Based</b></h2>
+    </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            {% for skl in skills %}
+            <div class="col-4">
+                <div class="card TestBox" style="width: 20rem; height: 12rem;">
+                    <div class="card-body">
+                        <h3>
+                            {% if skl.app_sub == 'UI' %}
+                            <a href="{% url 'testrule' 'UI' %}">UI (HTML,CSS,JavaScript)</a>
+                            {% endif %}
+
+                            {% if skl.app_sub == 'Python' %}
+                            <a href="{% url 'testrule' 'Python' %}">Python (Core, OOP's, Django)</a>
+                            {% endif %}
+
+                            {% if skl.app_sub == 'FS' %}
+                            <a href="{% url 'testrule' 'FS' %}">Full Stack (UI, Reactjs, Python, Django )</a>
+                            {% endif %}
+
+                            {% if skl.app_sub == 'IJP' %}
+                            <a href="{% url 'testrule' 'IJP' %}">IJP (UI, FS, Reacts, Python, DevOps)</a>
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <footer class="container-fluid testFooter">
+        <div class="row">
+            <div class="col-7 d-flex gap-3">
+                <img src="/static/images/BS.jpeg" />
+                <h5 class="mt-2">Buzzart Software PVT. LTD.</h5>
+            </div>
+            <div class="col-5 mt-2 footerContent">
+                <p><i> Copyright 2012 &copy; All Rights Reserved </i></p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

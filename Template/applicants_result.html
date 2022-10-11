@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/test.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+    <link rel="icon" href="/static/images/BS-icon.png" type="image/gif" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Buzzarts Software</title>
+</head>
+
+<body>
+    <!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navBar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://www.buzzartsoftware.com/" target="_blank">
+                <img src="/static/Images/Company_Logo.jpg" class="img-fluid pd15 mh-100 mw-100" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="row">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            {% if adminlog == True %}
+                            {% include 'logout_adm.html' %}
+                            {% else %}
+                            {% include 'log_adm.html' %}
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/"><b>Home</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://www.buzzartsoftware.com"><b>About Us</b></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="applicant_view"><b>Applicant View</b></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/testResults"><b>Test Results</b></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid"
+        style="font-family:monospace; background: linear-gradient(90deg, rgba(138, 138, 249, 1) 3%, rgba(179, 179, 254, 1) 11%, rgba(224, 224, 241, 1) 65%, rgba(136, 214, 233, 1) 91%);">
+        {% if messages %}
+        {% for msg in messages %}
+        {{ msg }} <br />
+        {% endfor %}
+        {% endif %}
+        
+        <div class="container-fluid">
+            <table class = "table table-striped table-hover" style="color:darkslategray; font-size: 12px;"> 
+                <tr>
+                    <th>Login ID</th>
+                    <th>Name</th>
+                    <th>E-Mail</th>
+                    <th>Birth</th>
+                    <th>Total<br/>Exp:</th>
+                    <th>Previous<br/>Organisation</th>
+                    <th>Address</th>
+                    <th>Experience</th>
+                    <th>Skills</th>
+                    <th>Education</th>
+                    <th>Appl. For<br/>UI, Python, FS, IJP</th>
+                    <th>Results</th>
+                </tr>
+                {% for user in usr %}
+                <tr>
+                    <td>{{ user.uid }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name  }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.dob }}</td>
+                    <td>{{ user.t_experience }}</td>
+                    <td>{{ user.previous_org }}</td>
+                    <td>
+                        {% for addr in user.address_set.all %}
+                        {{ addr.address1 }} {{ addr.pincode }} <br/>{{ addr.city }} {{ addr.state }} {{ addr.country }}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for exp in user.experience_set.all %}
+                        {{ exp.title }},{{ exp.company }} <br/>Exp:{{ exp.years }}.{{ exp.month }}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for skl in user.skills_set.all %}
+                        {{ skl.skill_name }},{{ skl.skill_type }},{{ skl.skill_level }}
+                        {% endfor %}
+                    </td>
+                    <!-- uid, first_name, last_name, mobile, email, dob, t_experience, previous_org, address1,pincode,city, state, country, 
+                    ui_app, python_app, fs_app, ijp_app, qualification, 
+                    percentage, year, title, company, years, months, skill_name, skill_type, skill_level -->
+                    <td>
+                        {% for qua in user.qualifications_set.all %}
+                        {{ qua.qualification }},{{ qua.percentage }},{{ qua.grade }} <br/>{{ qua.year }}
+                        {% endfor %}        
+                    </td>
+                    <td>
+                        {{ user.ui_app }}, {{ user.python_app }}, {{ user.fs_app }}, {{ user.ijp_app }} 
+                    </td>
+                    <td>
+                        {% for aprv in user.approval_set.all %}
+                        {{ aprv.app_sub }}, {{ aprv.submit_st }}, {{ aprv.marks }}, {{ aprv.result }}
+                        {% endfor %}        
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <footer class="container-fluid testFooter">
+        <div class="row">
+            <div class="col-7 d-flex gap-3">
+                <img src="/static/images/BS.jpeg" />
+                <h5 class="mt-2">Buzzart Software PVT. LTD.</h5>
+            </div>
+            <div class="col-5 mt-2 footerContent">
+                <p><i> Copyright 2012 &copy; All Rights Reserved </i></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

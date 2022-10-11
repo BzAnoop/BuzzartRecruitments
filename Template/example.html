@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ quiz.name }}</h1>
+    <br><br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for question in page.object_list %}
+            <div class="question">
+                <h3>{{ question.text }}</h3>
+                <div class="choices">
+                    {% for choice in question.get_choices_list %}
+                        <input type="radio" name="choice-for-question-{{ question.id }}"
+                               id="choice-{{ question.id }}-{{ forloop.counter }}" value="{{ choice.id }}"/>
+                        <label for="choice-{{ question.id }}-{{ forloop.counter }}">{{ choice.text }}</label><br/>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    {% if not page.has_next %}
+        <button class='accordion' type="submit">Submit Quiz</button>
+    {% endif %}
+    </form>
+    <div class="pagination">
+    <span class="step-links">
+        {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page.number }} of {{ page.paginator.num_pages }}.
+        </span>
+
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
